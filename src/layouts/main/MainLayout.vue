@@ -18,7 +18,7 @@
             <template #title>
               <span>代理商全局监控</span>
             </template>
-            <el-menu-item index="/main/agents/list">代理商列表</el-menu-item>
+
             <el-menu-item index="/main/agents/basic-list">平台入驻商户基本信息</el-menu-item>
             <el-menu-item index="/main/monitor/overview">代理商信息总览</el-menu-item>
             <el-menu-item index="/main/monitor/change-details">关系变更明细</el-menu-item>
