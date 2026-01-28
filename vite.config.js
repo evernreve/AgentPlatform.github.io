@@ -16,7 +16,7 @@ export default defineConfig({
     },
   },
   // --- 新增或修改以下配置 ---
-  base: '/Agent.github.io/', // 设置公共基础路径为你的仓库名
+  base: '/AgentPlatform.github.io/', // 设置公共基础路径为你的仓库名
   build: {
     outDir: 'docs',          // 构建输出到 docs 目录
     emptyOutDir: true,       // 构建前清空目录
