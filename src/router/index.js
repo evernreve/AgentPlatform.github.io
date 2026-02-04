@@ -45,13 +45,13 @@ const routes = [
         path: 'monitor/sp-te-relations',
         name: 'SpTeRelations',
         component: () => import('@/views/monitor/relations/SpTeRelations.vue'),
-        meta: { title: 'SP/TE代理关系说明' }
+        meta: { title: '代理关系说明' }
       },
       {
         path: 'monitor/sp-te-relations/detail',
         name: 'SpTeRelationDetail',
         component: () => import('@/views/monitor/relations/SpTeRelationDetail.vue'),
-        meta: { title: 'SP/TE代理关系详情' }
+        meta: { title: '代理关系详情' }
       },
       {
         path: 'account/management',

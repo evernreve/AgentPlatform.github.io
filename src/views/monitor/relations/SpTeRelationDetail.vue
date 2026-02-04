@@ -3,17 +3,23 @@
     <div class="page-header">
       <el-page-header 
         @back="goBack"
-        content="SP/TE代理关系详情"
+        content="代理关系详情"
       />
     </div>
     
     <el-card class="detail-card">
       <el-descriptions :column="2" border>
-        <el-descriptions-item label="SP名称">SP代理商A</el-descriptions-item>
-        <el-descriptions-item label="SP标识">SP001</el-descriptions-item>
-        <el-descriptions-item label="租户名称">租户A</el-descriptions-item>
-        <el-descriptions-item label="租户标识">TNT001</el-descriptions-item>
-        <el-descriptions-item label="SP/TE是否同名">
+        <el-descriptions-item label="被代理方">IPL</el-descriptions-item>
+        <el-descriptions-item label="被代理方标识">SP001</el-descriptions-item>
+        <el-descriptions-item label="被代理方身份">
+          <el-tag type="primary">PP</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item label="代理方名称">IPL</el-descriptions-item>
+        <el-descriptions-item label="代理方标识">TNT001</el-descriptions-item>
+        <el-descriptions-item label="代理方身份">
+          <el-tag type="success">TP</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item label="是否同名">
           <el-tag type="success">是</el-tag>
         </el-descriptions-item>
         <el-descriptions-item label="代理产品">
@@ -61,7 +67,7 @@ export default {
           changeDate: '2024-01-15 10:30:00',
           changeType: '新建关系',
           beforeChange: '-',
-          afterChange: '建立SP/TE代理关系',
+          afterChange: '建立代理关系',
           operator: 'admin',
           remark: '初始建立代理关系'
         },

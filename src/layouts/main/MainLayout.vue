@@ -28,7 +28,7 @@
             <template #title>
               <span>基础信息管理</span>
             </template>
-            <el-menu-item index="/main/monitor/sp-te-relations">SP/TE代理关系说明</el-menu-item>
+            <el-menu-item index="/main/monitor/sp-te-relations">代理关系说明</el-menu-item>
           </el-sub-menu>
           <el-sub-menu index="3">
             <template #title>
@@ -69,14 +69,13 @@ export default {
   methods: {
     getPageTitle() {
       const routeMap = {
-        '/main/agents/list': '代理商列表',
+
         '/main/monitor/overview': '代理商信息总览',
         '/main/monitor/contracts': '合同签约档案',
         '/main/monitor/change-details': '关系变更明细',
         '/main/monitor/statistics': '代理商业务数据统计',
-        '/main/agents/list': '代理商列表',
         '/main/agents/basic-list': '平台入驻商户基本信息',
-        '/main/monitor/sp-te-relations': 'SP/TE代理关系说明',
+        '/main/monitor/sp-te-relations': '代理关系说明',
         '/main/account/management': '账户管理',
         '/main/account/list': '账户列表'
       };

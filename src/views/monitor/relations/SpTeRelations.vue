@@ -1,22 +1,22 @@
 <template>
   <div class="sp-te-relations">
     <div class="page-header">
-      <h3>SP/TE代理关系说明</h3>
+      <h3>代理关系说明</h3>
     </div>
     
     <el-card class="filter-card">
       <el-form :inline="true" :model="filters" class="filter-form">
-        <el-form-item label="SP名称">
+        <el-form-item label="被代理方">
           <el-input 
             v-model="filters.spName" 
-            placeholder="请输入SP名称" 
+            placeholder="请输入被代理方" 
             style="width: 150px;"
           ></el-input>
         </el-form-item>
-        <el-form-item label="租户名称">
+        <el-form-item label="代理方名称">
           <el-input 
             v-model="filters.tenantName" 
-            placeholder="请输入租户名称" 
+            placeholder="请输入代理方名称" 
             style="width: 150px;"
           ></el-input>
         </el-form-item>
@@ -39,11 +39,31 @@
       style="width: 100%" 
       stripe
     >
-      <el-table-column prop="spName" label="SP名称" width="150"></el-table-column>
-      <el-table-column prop="spIdentifier" label="SP标识" width="150"></el-table-column>
-      <el-table-column prop="tenantName" label="租户名称" width="150"></el-table-column>
-      <el-table-column prop="tenantIdentifier" label="租户标识" width="150"></el-table-column>
-      <el-table-column prop="isSameName" label="SP/TE是否同名" width="120">
+      <el-table-column prop="spName" label="被代理方" width="150"></el-table-column>
+      <el-table-column prop="spIdentifier" label="被代理方标识" width="150"></el-table-column>
+      <el-table-column prop="spIdentity" label="被代理方身份" width="150">
+        <template #default="{ row }">
+          <el-tag 
+            :type="getIdentityTagType(row.spIdentity)"
+            size="small"
+          >
+            {{ row.spIdentity }}
+          </el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column prop="tenantName" label="代理方名称" width="150"></el-table-column>
+      <el-table-column prop="tenantIdentifier" label="代理方标识" width="150"></el-table-column>
+      <el-table-column prop="tenantIdentity" label="代理方身份" width="150">
+        <template #default="{ row }">
+          <el-tag 
+            :type="getIdentityTagType(row.tenantIdentity)"
+            size="small"
+          >
+            {{ row.tenantIdentity }}
+          </el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column prop="isSameName" label="是否同名" width="120">
         <template #default="{ row }">
           <el-tag 
             :type="row.isSameName ? 'success' : 'info'"
@@ -109,10 +129,12 @@ export default {
       },
       spTeRelationList: [
         {
-          spName: 'SP代理商A',
+          spName: 'IPL',
           spIdentifier: 'SP001',
-          tenantName: '租户A',
+          spIdentity: 'PP',
+          tenantName: 'IPL',
           tenantIdentifier: 'TNT001',
+          tenantIdentity: 'TP',
           isSameName: true,
           products: [
             { id: 'PROD001', name: '国际交易分佣产品' },
@@ -122,10 +144,12 @@ export default {
           createdAt: '2024-01-15'
         },
         {
-          spName: 'TE代理商B',
+          spName: 'IPL',
           spIdentifier: 'TE002',
-          tenantName: '租户B',
+          spIdentity: 'PP',
+          tenantName: 'EX',
           tenantIdentifier: 'TNT002',
+          tenantIdentity: 'SA',
           isSameName: false,
           products: [
             { id: 'PROD003', name: '汇率返点产品' }
@@ -134,10 +158,12 @@ export default {
           createdAt: '2024-02-20'
         },
         {
-          spName: 'SP代理商C',
+          spName: 'BB',
           spIdentifier: 'SP003',
-          tenantName: '租户C',
+          spIdentity: 'SA',
+          tenantName: 'BB',
           tenantIdentifier: 'TNT003',
+          tenantIdentity: 'TP',
           isSameName: true,
           products: [
             { id: 'PROD004', name: '跨境支付分佣' },
@@ -148,10 +174,12 @@ export default {
           createdAt: '2024-03-10'
         },
         {
-          spName: 'SP代理商D',
+          spName: 'EX',
           spIdentifier: 'SP004',
-          tenantName: '租户D',
+          spIdentity: 'AP',
+          tenantName: 'KUN',
           tenantIdentifier: 'TNT004',
+          tenantIdentity: 'TP',
           isSameName: false,
           products: [
             { id: 'PROD007', name: '海外支付产品' }
@@ -160,10 +188,12 @@ export default {
           createdAt: '2024-04-05'
         },
         {
-          spName: 'TE代理商E',
+          spName: 'PP2',
           spIdentifier: 'TE005',
-          tenantName: '租户E',
+          spIdentity: 'PP',
+          tenantName: 'PP2',
           tenantIdentifier: 'TNT005',
+          tenantIdentity: 'SA',
           isSameName: true,
           products: [
             { id: 'PROD008', name: '跨境电商支付产品' },
@@ -173,10 +203,12 @@ export default {
           createdAt: '2024-05-12'
         },
         {
-          spName: 'SP代理商F',
+          spName: 'EX',
           spIdentifier: 'SP006',
-          tenantName: '租户F',
+          spIdentity: 'PP',
+          tenantName: 'IPL',
           tenantIdentifier: 'TNT006',
+          tenantIdentity: 'TP',
           isSameName: false,
           products: [
             { id: 'PROD010', name: '技术服务产品' }
@@ -185,10 +217,12 @@ export default {
           createdAt: '2024-06-18'
         },
         {
-          spName: 'TE代理商G',
+          spName: 'IPL',
           spIdentifier: 'TE007',
-          tenantName: '租户G',
+          spIdentity: 'SA',
+          tenantName: 'IPL',
           tenantIdentifier: 'TNT007',
+          tenantIdentity: 'TP',
           isSameName: true,
           products: [
             { id: 'PROD011', name: '咨询服务产品' },
@@ -198,10 +232,12 @@ export default {
           createdAt: '2024-07-22'
         },
         {
-          spName: 'SP代理商H',
+          spName: 'BB',
           spIdentifier: 'SP008',
-          tenantName: '租户H',
+          spIdentity: 'AP',
+          tenantName: 'EX',
           tenantIdentifier: 'TNT008',
+          tenantIdentity: 'SA',
           isSameName: false,
           products: [
             { id: 'PROD013', name: '国际汇款产品' },
@@ -244,6 +280,15 @@ export default {
     },
     handleCurrentChange(val) {
       this.pagination.currentPage = val;
+    },
+    getIdentityTagType(identity) {
+      const typeMap = {
+        'PP': 'primary',
+        'TP': 'success',
+        'AP': 'warning',
+        'SA': 'info'
+      };
+      return typeMap[identity] || 'info';
     }
   }
 };
